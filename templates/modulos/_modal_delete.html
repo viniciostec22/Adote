@@ -1,0 +1,22 @@
+{% if pet %}
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal{{pet.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel{{pet.id}}">Desaja realmente excluir <span style="color:red;">{{pet.nome}}</span>?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <form action="{% url 'remover_pet' pet.id %}" method="POST">
+                    {% csrf_token %}
+           
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-danger">Excluir</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>                     
+{% endif %}

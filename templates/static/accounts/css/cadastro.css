@@ -21,6 +21,20 @@
     font-size: 40px;
     
 }
+.title{
+    font-size:50px;
+    color: var(--dark-color);
+}
+.subtitle{
+    font-size: 24px;
+}
+.img-pet{
+    width: 40%;
+    height: 40%;
+}
+.table{
+    vertical-align:inherit;
+}
 
 .btn-custom-primary{
     background-color: var(--dark-color);
@@ -33,12 +47,22 @@
     margin-top: 20px;
 
 }
+.btn-custom-primary:hover{
+    background: var(--differential-color);
+    transition: all 0.5s;
+}
+
 
 .link-float{
 
     text-decoration: none;
     float: right;
     margin: 20px;
+    color: #fff;
+}
+.link-float:hover{
+    color: var(--dark-color);
+    transition: all 0.5s;
 }
 
 .side-logo{
