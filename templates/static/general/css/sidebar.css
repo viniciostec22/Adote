@@ -1,0 +1,27 @@
+@import url(../../general/css/general.css);
+a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+}
+i{
+    margin-right: 10px;
+    font-size: 20px;
+}
+.links_name{
+    padding: 10px;
+}
+.links_name:hover{
+    display: block;
+    transition: 0.5s;
+    background-color: var(--differential-color);
+    
+}
+.sair{
+    position: absolute;
+    display: block;
+    margin-left: auto;
+    bottom: 20px;
+    
+    
+}
