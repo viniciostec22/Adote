@@ -5,6 +5,7 @@
     <link href="{% static 'accounts/css/cadastro.css' %}" rel="stylesheet"> 
     <link href="{% static 'divulge/css/novo_pet.css' %}" rel="stylesheet">
     <link href="{% static 'divulge/css/seus_pets.css' %}" rel="stylesheet">
+    <link href="{% static 'adopt/css/listar_pets.css' %}" rel="stylesheet">
 {% endblock head %}
 
 {% block content %}
@@ -25,8 +26,9 @@
                             {% if messages %}
                                 <br>
                                 {% for message in messages %}
-                                    <div class="alert {{message.tags}}">
+                                    <div class="alert alert-warning alert-dismissible fade show  {{message.tags}}" role="alert">
                                         {{message}}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                 {% endfor %}
                             {% endif %}
@@ -62,7 +64,7 @@
                                 {% for pet in pets%}
                                     <tr class="tabela-linha">
                                         <td width="20%">
-                                            <a href=""><img width="40%" src="{{pet.foto.url}}"></a>
+                                            <a href="{% url 'ver_pet' pet.id %}"><img width="40%" src="{{pet.foto.url}}"></a>
                                         </td>
                                         <td>
                                             {{pet.nome}}
