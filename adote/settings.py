@@ -134,6 +134,8 @@ MESSAGE_TAGS = {
     constants.INFO: 'alert-info',
     constants.WARNING: 'alert-warning',
 }
+#config auth
+AUTH_USER_MODEL = 'accounts.Users'
 
 #Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

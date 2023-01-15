@@ -2,10 +2,18 @@
 @import url(../../general/css/general.css);
 .bg-side{
     background-color: var(--main-color);
+    color: #fff;  
+    
+}
+.cadastro{
+    background-color: var(--main-color);
     color: #fff;
     height: 100vh;
     
+}
 
+.nav-link{
+   color: #fff;
 }
 .header{
     border-bottom: 1px solid white;

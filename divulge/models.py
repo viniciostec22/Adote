@@ -1,7 +1,8 @@
 from pyexpat import model
 from secrets import choice
 from django.db import models
-from django.contrib.auth.models import User 
+#from django.contrib.auth.models import User 
+from accounts.models import Users
 
 class Raca(models.Model):
     raca = models.CharField(max_length=50)
@@ -18,7 +19,7 @@ class Tag(models.Model):
 class Pet(models.Model):
     choices_status = (('P', 'Para adoção'),
                       ('A', 'Adotado'))
-    usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    usuario = models.ForeignKey(Users, on_delete=models.DO_NOTHING)
     foto =models.ImageField(upload_to='fotos_pets')
     nome = models.CharField(max_length=100)
     descricao = models.TextField()

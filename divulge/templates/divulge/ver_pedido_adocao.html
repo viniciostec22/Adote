@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_.html' %}
 {% load static %}
 {% block title %}Ver Pet{% endblock title %}
 {% block head %}
@@ -6,26 +6,29 @@
     <link href="{% static 'divulge/css/novo_pet.css' %}" rel="stylesheet">
     <link href="{% static 'divulge/css/seus_pets.css' %}" rel="stylesheet">
     <link href="{% static 'adopt/css/listar_pets.css' %}" rel="stylesheet">
+    <link href="{% static 'divulge/css/pedido_adocao.css' %}" rel="stylesheet">
 {% endblock head %}
 
 {% block content %}
     
 <div class="container-fluid">
     <div class="row">
-        {% include 'modulos/_sidebar.html' %}
+        
 
-        <div style="padding:60px" class="col-md">
+        <div class="col-md">
             <div class="row">
                 {% if messages %}
                     <br>
                     {% for message in messages %}
-                        <div class="alert {{message.tags}}">
-                            {{message}}
+                        <div class="alert {{message.tags}} alert-dismissible fade show ">                    
+                                {{message}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                         </div>
                     {% endfor %}
                 {% endif %}
                 {% for pedido in pedidos %}
-                    <div class="col-md-3" style="margin-top: 20px;">
+                    <div class="col-md-4 card-adocao" style="margin-top: 20px;">
                         <div class="card" style="background-color: #D6D6D6; border:none;">
                             <div style="padding:10px">
                                 <span clas="span-bold">{{pedido.pet.nome}}</span>

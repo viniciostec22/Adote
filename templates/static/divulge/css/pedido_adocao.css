@@ -1,0 +1,17 @@
+@media(max-width:2560px){
+    .card-adocao{
+        width: 25%;
+    }
+}
+
+@media(max-width:768px){
+    .card-adocao{
+        width: 50%;
+    }
+}
+
+@media(max-width:425px){
+    .card-adocao{
+        width: 100%;
+    }
+}

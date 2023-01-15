@@ -1,11 +1,11 @@
 from django.http import JsonResponse
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.decorators import login_required
-
 from adopt.models import PedidoAdocao
 from .models import Tag, Raca, Pet
 from django.contrib import messages
 from django.contrib.messages import constants
+from accounts.models import Users
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 @login_required # type: ignore
@@ -67,7 +67,8 @@ def ver_pet(request, id):
     
 def ver_pedido_adocao(request):
     if request.method == 'GET':
-        pedidos = PedidoAdocao.objects.filter(usuario=request.user).filter(status='AG')
+        
+        pedidos = PedidoAdocao.objects.filter(pet__usuario=request.user).filter(status='AG').filter(pet__status='P')
         return  render(request, 'divulge/ver_pedido_adocao.html', {'pedidos':pedidos})
     
 def dashboard(request):

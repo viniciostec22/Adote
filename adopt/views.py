@@ -6,6 +6,7 @@ from django.contrib.messages import constants
 from .models import PedidoAdocao
 from datetime import datetime
 from django.core.mail import send_mail
+from accounts.models import Users
 
 def listar_pets(request):
     if request.method == "GET":
@@ -40,18 +41,20 @@ def pedido_adocao(request,id_pet):
 def processa_pedido_adocao(request, id_pedido):
     status = request.GET.get('status')
     pedido = PedidoAdocao.objects.get(id=id_pedido)
+    pet = Pet.objects.get(id=pedido.pet_id) # type: ignore    
     if status == 'A':
         pedido.status = 'AP'
+        pet.status = 'A'
         string = '''Olá sua adoção foi aprovada com sucesso'''
     elif status == 'R':
         string = '''Olá sua adoção recusada'''
         pedido.status = 'R'
         
     pedido.save()
-    #TODO: alterar status do Pet
+    pet.save()
     email = send_mail(
         'Sua adoção foi processada',
-        string,
+        string,#type:ignore
         'vinicios471@gmail.com',
         [pedido.usuario.email,],
     )

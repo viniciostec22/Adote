@@ -1,5 +1,6 @@
+@import url(../../general/css/general.css);
 .btn-custom-secondary{
-    background-color: #762D77;
+    background-color:var(--differential-color);
     border: none;
     box-shadow: 2px 2px 5px 1px rgb(108, 108, 108);
     color: white;

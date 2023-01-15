@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login, logout
+from .models import Users
 # Create your views here.
 def cadastro(request):
     if request.user.is_authenticated:
@@ -24,13 +25,13 @@ def cadastro(request):
             return render(request, 'accounts/cadastro.html')
         
         try:
-            user = User.objects.create_user(
+            user = Users.objects.create_user(
                 username=nome,
                 email=email,
                 password=senha
             )
             messages.add_message(request, constants.SUCCESS, 'Usuário criado com sucesso')
-            return render(request, 'accounts/cadastro.html')
+            return redirect('login')
         except: 
             messages.add_message(request, constants.ERROR, 'Erro Interno do sistema tente novamente mais tarde')
             return render(request, 'accounts/cadastro.html')
