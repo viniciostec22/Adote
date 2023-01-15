@@ -83,7 +83,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
+db.sqlite3
 # mkdocs documentation
 /site
 
@@ -129,3 +129,4 @@ db.sqlite3
 db copy.sqlite3
 #static/
 Footer
+
