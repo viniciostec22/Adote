@@ -16,7 +16,7 @@ def cadastro(request):
         email = request.POST.get('email')
         senha = request.POST.get('senha')
         confirmar_senha = request.POST.get('confirmar_senha')
-        confirmar_senha = request.POST.get('confirmar_senha')
+       
         if len(nome.strip()) == 0 or len(email.strip()) == 0 or len(senha.strip()) == 0 or len(confirmar_senha.strip()) == 0:
             messages.add_message(request, constants.ERROR, 'Preencha todos os campos')
             return render(request, 'accounts/cadastro.html')
@@ -25,7 +25,7 @@ def cadastro(request):
             return render(request, 'accounts/cadastro.html')
         
         try:
-            user = Users.objects.create_user(
+            user = Users.objects.create_user(# type: ignore 
                 username=nome,
                 email=email,
                 password=senha
@@ -55,4 +55,4 @@ def logar(request):
         
 def sair(request):
     logout(request)
-    return redirect('/auth/login')
+    return redirect('/')
