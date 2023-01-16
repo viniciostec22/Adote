@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url(../../general/css/general.css);
+.bg-side{
+    background-color: var(--main-color);
+    color: #fff;  
+    
+}
+.cadastro{
+    background-color: var(--main-color);
+    color: #fff;
+    height: 100vh;
+    
+}
+
+.nav-link{
+   color: #fff;
+}
+.header{
+    border-bottom: 1px solid white;
+    padding: 20px;
+}
+
+.body-form{
+    padding: 20px;
+}
+
+.font-logo{
+    margin-left: 10px;
+    font-size: 40px;
+    
+}
+.title{
+    font-size:50px;
+    color: var(--dark-color);
+}
+.subtitle{
+    font-size: 24px;
+}
+.img-pet{
+    width: 40%;
+    height: 40%;
+}
+.table{
+    vertical-align:inherit;
+}
+
+.btn-custom-primary{
+    background-color: var(--dark-color);
+    border: none;
+    box-shadow: 2px 2px 5px 1px black;
+    color: white;
+    font-size: 20px;
+    padding: 5px 20px 5px 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+
+}
+.btn-custom-primary:hover{
+    background: var(--differential-color);
+    transition: all 0.5s;
+}
+
+
+.link-float{
+
+    text-decoration: none;
+    float: right;
+    margin: 20px;
+    color: #fff;
+}
+.link-float:hover{
+    color: var(--dark-color);
+    transition: all 0.5s;
+}
+
+.side-logo{
+    text-align: center;
+    margin-top: 60px;    
+}
