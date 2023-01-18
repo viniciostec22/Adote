@@ -6,6 +6,7 @@
     <link href="{% static 'divulge/css/novo_pet.css' %}" rel="stylesheet">
     <link href="{% static 'divulge/css/seus_pets.css' %}" rel="stylesheet">
     <link href="{% static 'adopt/css/listar_pets.css' %}" rel="stylesheet">
+    <link href="{% static 'divulge/css/dashboard.css' %}" rel="stylesheet">
 {% endblock head %}
 
 {% block content %}
@@ -13,10 +14,10 @@
     <div class="row">
       
 
-        <div style="padding:60px" class="col-md">
+        <div class="col-md dashboard">
 
             <h3 class="font-vinho">Quantidade de adoções por raça.</h3>
-             <div style="width: 60%;">
+             <div class="grafico" >
                 <canvas id="myChart"></canvas>
             </div>  
         </div>
