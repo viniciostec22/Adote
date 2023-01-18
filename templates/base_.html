@@ -26,7 +26,7 @@
                 <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-side">
                     <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                         <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                            <img src="{% static 'accounts/img/logo_adote.png' %}"width="20%" alt=""><span class="fs-5 d-none d-sm-inline"> Menu </span>
+                            <img class="logo" src="{% static 'accounts/img/logo_adote.png' %}"width="20%" alt=""><span class="fs-5 d-none d-sm-inline"> Menu </span> 
                         </a>
                         
                         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -45,10 +45,10 @@
                                     <i class="fa-solid fa-paw"></i> <span class="ms-1 d-none d-sm-inline">Pets</span></a>
                                 <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                                     <li class="w-100">
-                                        <a href="{% url 'seus_pets' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Seus Pets </span></a>
+                                        <a href="{% url 'seus_pets' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Seus Pets </span>pets</a>
                                     </li>
                                     <li>
-                                        <a href="{% url 'listar_pets' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Pets para Adoção</span></a>
+                                        <a href="{% url 'listar_pets' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Pets para Adoção</span>Adoção</a>
                                     </li>
                                 </ul>
                             </li>
@@ -79,7 +79,7 @@
                                     <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
                                 <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                     <li class="w-100">
-                                        <a href="{% url 'dashboard' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Grafico</span></a>
+                                        <a href="{% url 'dashboard' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Grafico</span><i class="bi bi-diagram-3"></i></a>
                                     </li>
                                     {% comment %} <li>
                                         <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>

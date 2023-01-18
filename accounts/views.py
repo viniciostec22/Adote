@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login, logout
 from .models import Users
+import re
+
 # Create your views here.
 def cadastro(request):
     if request.user.is_authenticated:
@@ -19,11 +21,13 @@ def cadastro(request):
        
         if len(nome.strip()) == 0 or len(email.strip()) == 0 or len(senha.strip()) == 0 or len(confirmar_senha.strip()) == 0:
             messages.add_message(request, constants.ERROR, 'Preencha todos os campos')
-            return render(request, 'accounts/cadastro.html')
+            return redirect('cadastro')
+        if not re.fullmatch(re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'), email):
+            messages.add_message(request,messages.ERROR,'email invalido!')
+            return redirect('cadastro') 
         if senha != confirmar_senha:
             messages.add_message(request, constants.ERROR, 'Digite as senhas iguais')
-            return render(request, 'accounts/cadastro.html')
-        
+            return redirect('cadastro')
         try:
             user = Users.objects.create_user(# type: ignore 
                 username=nome,

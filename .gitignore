@@ -3,7 +3,7 @@
 *.pot
 *.pyc
 __pycache__
-db.sqlite3
+#db.sqlite3
 media
 
 # Backup files #
@@ -83,7 +83,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-db.sqlite3
+#db.sqlite3
 # mkdocs documentation
 /site
 
@@ -125,8 +125,8 @@ env
 local_settings.py
 _local_settings.py
 gunicorn-error-log
-db.sqlite3
-db copy.sqlite3
+#db.sqlite3
+#db copy.sqlite3
 #static/
 Footer
 

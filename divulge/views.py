@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.messages import constants
 from accounts.models import Users
 from django.views.decorators.csrf import csrf_exempt
-# Create your views here.
+
 @login_required # type: ignore
 def novo_pet(request):
     if request.method == 'GET':
@@ -24,7 +24,10 @@ def novo_pet(request):
         tags = request.POST.getlist('tags')
         raca = request.POST.get('raca')
         #TODO: validar os dados 
-        
+        if len(nome.strip()) == 0 or len(descricao.strip()) == 0 or len(estado.strip()) == 0 or len(cidade.strip()) == 0 or len(telefone.strip()) == 0:
+            messages.add_message(request, constants.ERROR, 'há Campos obrigatorios em branco')
+            return render(request, 'divulge/novo_pet.html')
+       
         pet = Pet(
             usuario=request.user,
             foto=foto,
@@ -43,13 +46,14 @@ def novo_pet(request):
         pet.save()
         messages.add_message(request, constants.SUCCESS, 'Pet Cadastrado com sucesso')
         return redirect('/divulgar/seus_pets')
-        #TODO: mensagens de erros  
+        
 @login_required  # type: ignore      
 def seus_pets(request):
     if request.method == 'GET':
         pets = Pet.objects.filter(usuario = request.user)
         return render(request, 'divulge/seus_pets.html',{'pets':pets})
-    
+   
+@login_required  
 def remover_pet(request, id):
     pet = Pet.objects.get(id=id)
     
@@ -60,21 +64,24 @@ def remover_pet(request, id):
     messages.add_message(request, constants.SUCCESS, 'Pet removido com sucesso')
     return redirect('/divulgar/seus_pets')
 
+@login_required 
 def ver_pet(request, id):
     if request.method == 'GET':
         pet = Pet.objects.get(id=id)
         return render(request, 'divulge/ver_pet.html', {'pet':pet})
-    
+@login_required   
 def ver_pedido_adocao(request):
     if request.method == 'GET':
         
         pedidos = PedidoAdocao.objects.filter(pet__usuario=request.user).filter(status='AG').filter(pet__status='P')
         return  render(request, 'divulge/ver_pedido_adocao.html', {'pedidos':pedidos})
-    
+
+@login_required    
 def dashboard(request):
     if request.method == 'GET':
         return render(request, 'divulge/dashboard.html')
 
+@login_required 
 @csrf_exempt
 def api_adocoes_por_raca(request):
     racas = Raca.objects.all()

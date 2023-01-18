@@ -28,7 +28,7 @@
                         <hr>
                         <form action="{% url 'cadastro' %}" method="POST">{% csrf_token %}
                             <span>Nome:</span>
-                            <input type="text" class="form-control" placeholder="Digite seu nome..." name="nome">
+                            <input type="text" class="form-control" placeholder="Digite seu nome..." name="nome" value="{{request.GET.nome}}">
                             <br>
                             <span>E-mail:</span>
                             <input type="email" class="form-control" placeholder="Digite seu email..." name="email">

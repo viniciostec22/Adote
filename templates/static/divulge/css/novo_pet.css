@@ -23,3 +23,13 @@
 .font-vinho{
     color: var(--differential-color);
 }
+@media(max-width:768px){
+    .box{
+        width: 100%;
+    }
+}
+@media(max-width:425px){
+    .box{
+        width: 100%;
+    }
+}

@@ -25,3 +25,12 @@ i{
     
     
 }
+@media(max-width:425px){
+    .logo{
+        display: none;
+    }
+    a{
+        color: blueviolet;
+    }
+    
+}
