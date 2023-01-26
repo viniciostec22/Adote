@@ -7,9 +7,7 @@ from .models import PedidoAdocao
 from datetime import datetime
 from django.core.mail import send_mail
 from accounts.models import Users
-from django.contrib.auth.decorators import login_required
 
-@login_required # type: ignore
 def listar_pets(request):
     if request.method == "GET":
         pets = Pet.objects.filter(status='P')
@@ -25,7 +23,7 @@ def listar_pets(request):
             raca_filter = Raca.objects.get(id=raca_filter)
         
         return render(request, 'adopt/listar_pets.html',{'pets':pets, 'racas':racas, 'cidade':cidade, 'raca_filter':raca_filter})
-@login_required # type: ignore
+
 def pedido_adocao(request,id_pet):
     pet = Pet.objects.filter(id=id_pet).filter(status="P")
     
@@ -36,14 +34,10 @@ def pedido_adocao(request,id_pet):
     pedido = PedidoAdocao(pet=pet.first(),
                           usuario=request.user,
                           data=datetime.now())
-    
-    if pedido.usuario == request.user:
-        messages.add_message(request, constants.WARNING, 'Você não pode adotar um Pet que já é seu')
-        return redirect('/adotar')
     pedido.save()
     messages.add_message(request, constants.SUCCESS, 'Pedido de adoçao realizado com suesso')
     return redirect('/adotar')
-@login_required # type: ignore
+
 def processa_pedido_adocao(request, id_pedido):
     status = request.GET.get('status')
     pedido = PedidoAdocao.objects.get(id=id_pedido)

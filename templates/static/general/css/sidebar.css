@@ -22,11 +22,9 @@ i{
     display: block;
     margin-left: auto;
     bottom: 20px;
+    
+    
 }
-.bi-diagram-3{
-    display: none;
-}
-
 @media(max-width:425px){
     .logo{
         display: none;
@@ -34,7 +32,5 @@ i{
     a{
         color: blueviolet;
     }
-    .bi-diagram-3{
-        display:flex;
-    }
+    
 }
