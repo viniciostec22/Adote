@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1{
+      color: blueviolet;
+    }
+    .main{
+      background-color:aqua;
+      padding: 20px;
+    }
+    span{
+      font-weight: bold;
+      color: blueviolet;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    {% if status == 'A' %}
+    <h1>{{string}}</h1>
+    <h2> Seu novo Amiguinho <span>{{pedido.pet}}</span></h2>
+    <img src="{{pedido.pet.foto.url}}" alt="">
+
+  <div class="row">
+    <img class="logo" src="{% static 'accounts/img/logo_adote.png' %}"width="20%" alt="">
+    <h3 class="font-vinho">Entre em contato com tutor para combinar a entrega</h3>
+    <div class="col-md">
+        <div class="row">
+            <div class="col-md">
+                <span class="span-bold">Estado</span>
+                <p>{{pet.estado}}</p>
+            </div>
+
+            <div class="col-md">
+                <span class="span-bold">Cidade</span>
+                <p>{{pet.cidade}}</p>
+            </div>
+        </div>
+        <span class="span-bold">Telefone para contato</span>
+        <p>{{pet.telefone}}</p>
+        {% elif status == 'R' %}
+        <h1>{{string}}</h1>
+        <p>Não desanime temos varios outros amiguinhos aguardando para ser adotados</p>
+        {% endif %}
+  </div>
+  
+</body>
+</html>

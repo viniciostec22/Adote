@@ -6,7 +6,10 @@ from django.contrib.messages import constants
 from .models import PedidoAdocao
 from datetime import datetime
 from django.core.mail import send_mail
-from accounts.models import Users
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.conf import settings
 
 def listar_pets(request):
     if request.method == "GET":
@@ -47,17 +50,22 @@ def processa_pedido_adocao(request, id_pedido):
         pet.status = 'A'
         string = '''Olá sua adoção foi aprovada com sucesso'''
     elif status == 'R':
-        string = '''Olá sua adoção recusada'''
+        string = '''Olá sua adoção foi recusada'''
         pedido.status = 'R'
         
     pedido.save()
     pet.save()
-    email = send_mail(
-        'Sua adoção foi processada',
-        string,#type:ignore
-        'vinicios471matheus@outlook.com',
-        [pedido.usuario.email,],
-    )
+    html_content = render_to_string('emails/adocao_confirmada.html',{'string':string, 'pedido':pedido, 'pet':pet, 'status':status})
+    text_content = strip_tags(html_content)
+    email = EmailMultiAlternatives('Seu pedido de adoçao foi Processado', text_content, settings.EMAIL_HOST_USER,[pedido.usuario.email,])
+    email.attach_alternative(html_content, 'text/html')
+    email.send()
+    # email = send_mail(
+    #     'Sua adoção foi processada',
+    #     string,#type:ignore
+    #     'vinicios471matheus@outlook.com',
+    #     [pedido.usuario.email,],
+    # )
     messages.add_message(request, constants.SUCCESS, 'Pedido de adoção processado com sucesso')
     return redirect('/divulgar/ver_pedido_adocao')
   
