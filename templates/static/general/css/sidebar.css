@@ -17,6 +17,9 @@ i{
     background-color: var(--differential-color);
     
 }
+.flex-container{
+    display: flex;
+}
 .sair{
     position: absolute;
     display: block;

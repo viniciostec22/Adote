@@ -56,6 +56,10 @@ def logar(request):
         else:
             messages.add_message(request, constants.ERROR, 'Usuario ou senha incorreto')
             return render(request, 'accounts/login.html')
+
+def editar_user(request, id):
+    if request.method == 'GET':
+        return render(request, 'accounts/editar_user.html')
         
 def sair(request):
     logout(request)
