@@ -1,4 +1,4 @@
 {
     "python.linting.enabled": true,
-    "dotenv.enableAutocloaking": false
+    "dotenv.enableAutocloaking": true
 }

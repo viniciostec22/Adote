@@ -1,0 +1,15 @@
+.dashboard{
+  padding:60px
+}
+.grafico{
+  width: 60%
+}
+
+@media(max-width:425px){
+  .dashboard{
+    padding:0%
+  }
+  .grafico{
+    width: 100%;
+  }
+}
