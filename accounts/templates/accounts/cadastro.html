@@ -27,11 +27,31 @@
                         <p>Seu cadastro salva vidas.</p>
                         <hr>
                         <form action="{% url 'cadastro' %}" method="POST">{% csrf_token %}
-                            <span>Nome:</span>
-                            <input type="text" class="form-control" placeholder="Digite seu nome..." name="nome" value="{{request.GET.nome}}">
+                            <span>Usuario:</span>
+                            <input type="text" class="form-control" placeholder="Digite nome de Usuario..." name="usuario" value="{{request.GET.nome}}">
                             <br>
-                            <span>E-mail:</span>
-                            <input type="email" class="form-control" placeholder="Digite seu email..." name="email">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <span>Nome:</span>
+                                <input type="text" class="form-control" placeholder="Digite seu nome..." name="nome" value="{{request.GET.nome}}">
+                                </div>
+                                <div class="col-sm">
+                                    <span>Sobre nome:</span>
+                                <input type="text" class="form-control" placeholder="Digite seu sobre nome..." name="sobre-nome" value="{{request.GET.nome}}">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md">
+                                    <span>E-mail:</span>
+                                    <input type="email" class="form-control" placeholder="Digite seu email..." name="email">
+                                </div>
+                                <div class="col-md">
+                                    <span>Telefone:</span>
+                                    <input type="tel" maxlength="15" onkeyup="handlePhone(event)" class="form-control" placeholder="Digite um número de telefone" name="tel" />
+                                </div>    
+                            </div>
+                            
                             <br>
                             <div class="row">
 
@@ -42,7 +62,7 @@
 
                                 <div class="col-md">
                                     <span>Confirmar senha:</span>
-                                    <input type="password" class="form-control" placeholder="Digite sua senha..." name="confirmar_senha">
+                                    <input type="password" class="form-control" placeholder="Confirme sua senha..." name="confirmar_senha">
                                 </div>
                             </div>
 
@@ -66,5 +86,19 @@
 
 
         </div>
+        <script>
+            const handlePhone = (event) => {
+                let input = event.target
+                input.value = phoneMask(input.value)
+              }
+              
+              const phoneMask = (value) => {
+                if (!value) return ""
+                value = value.replace(/\D/g,'')
+                value = value.replace(/(\d{2})(\d)/,"($1) $2")
+                value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+                return value
+              }
+        </script>
 
   {% endblock %}

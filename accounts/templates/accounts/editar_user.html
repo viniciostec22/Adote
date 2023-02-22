@@ -5,8 +5,76 @@
     <link href="{% static 'accounts/css/cadastro.css' %}" rel="stylesheet"> 
     <link href="{% static 'divulge/css/novo_pet.css' %}" rel="stylesheet">
     <link href="{% static 'divulge/css/seus_pets.css' %}" rel="stylesheet">
+    <style>
+        .main{
+            margin-left: auto;
+            margin-right: auto; 
+                     
+        }
+        .row{
+            margin-bottom: 20px;
+        }
+    </style>
 {% endblock head %}
 
 {% block content %}
-
+    <div class="contaiener ">
+     <div class="col-md-10 main">
+        <form action="">
+            <div class="row">
+                <div class="col-sm">
+                    <label for="" class="form-label">Nome:</label>
+                    <input type="text" class="form-control" placeholder="Nome" name="nome">
+                </div>
+                <div class="col-sm">
+                    <label for="" class="form-label">Sobre Nome:</label>
+                    <input type="text" class="form-control" placeholder="sobre Nome" name="sobrenome">
+                </div>
+               
+                <div class="col-sm">
+                    <label for="validationCustomUsername" class="form-label">Nome de Usuario</label>
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                      <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                    </div>
+                  </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label for="" class="form-label">E-mail:</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                <div class="col-sm">
+                    <label for="" class="form-label">Telefone:</label>
+                    <input type="tel" maxlength="15" onkeyup="handlePhone(event)" class="form-control" placeholder="Digite um número de telefone" name="tel" />
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label for="" class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="inputPassword">
+                </div>
+                <div class="col-sm">
+                    <label for="" class="form-label">Confirmação de Senha</label>
+                    <input type="password" class="form-control" id="inputPassword">
+                </div>
+            </div>
+         </form>
+     </div>
+    </div>
+    <script>
+        const handlePhone = (event) => {
+            let input = event.target
+            input.value = phoneMask(input.value)
+          }
+          
+          const phoneMask = (value) => {
+            if (!value) return ""
+            value = value.replace(/\D/g,'')
+            value = value.replace(/(\d{2})(\d)/,"($1) $2")
+            value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+            return value
+          }
+    </script>
 {% endblock content %}

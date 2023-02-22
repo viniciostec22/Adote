@@ -14,8 +14,10 @@ def cadastro(request):
     if request.method == 'GET':
         return render(request, 'accounts/cadastro.html')
     elif request.method == 'POST':
+        usuario = request.POST.get('usuario')
         nome = request.POST.get('nome')
         email = request.POST.get('email')
+        tel = request.POST.get('tel')
         senha = request.POST.get('senha')
         confirmar_senha = request.POST.get('confirmar_senha')
        
@@ -30,8 +32,10 @@ def cadastro(request):
             return redirect('cadastro')
         try:
             user = Users.objects.create_user(# type: ignore 
-                username=nome,
+                username=usuario,
+                first_name = nome,
                 email=email,
+                telefone = tel,
                 password=senha
             )
             messages.add_message(request, constants.SUCCESS, 'Usuário criado com sucesso')

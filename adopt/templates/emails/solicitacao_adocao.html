@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+   
+    h1{
+      color: blueviolet;
+    }
+    .main{
+      font-family: 'Roboto', sans-serif;
+      background-color:#0FC9F2;
+      padding: 20px;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #09090A;
+     
+      
+    }
+   
+    span{
+      font-weight: bold;
+      color: #F28B30;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <p>Prezado {{pet.usuario.first_name}},</p>
+    <p>Um usuário do nosso sistema de adoção de animais acabou de solicitar a adoção do (a) <span>{{pet.nome}}</span>. As informações do solicitante são as seguintes:</p>
+    <ul>
+      <li><strong>Nome:</strong> {{usuario.first_name}}</li>
+      <li><strong>E-mail:</strong> {{usuario.email}}</li>
+      <li><strong>Telefone:</strong> {{usuario.telefone}}</li>
+    </ul>
+    <p>Por favor, entre em contato com o solicitante o mais rápido possível para discutir o processo de adoção e fornecer quaisquer informações adicionais sobre o animal.</p>
+    <p>Agradecemos por utilizar nosso sistema e desejamos-lhe boa sorte na adoção responsável do animal.</p>
+    <br>
+    <p>Atenciosamente,<br>
+    <strong>Sistema Ado.te</strong> </p>
+  </div>
+</body>
+</html>

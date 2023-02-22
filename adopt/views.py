@@ -27,19 +27,29 @@ def listar_pets(request):
         
         return render(request, 'adopt/listar_pets.html',{'pets':pets, 'racas':racas, 'cidade':cidade, 'raca_filter':raca_filter})
 
-def pedido_adocao(request,id_pet):
-    pet = Pet.objects.filter(id=id_pet).filter(status="P")
+def pedido_adocao(request, id_pet):
+    pet = Pet.objects.filter(id=id_pet, status="P").first()
     
-    if not pet.exists():
+    if not pet:
         messages.add_message(request, constants.WARNING, 'Esse pet já foi adotado')
         return redirect('/adotar')
     
-    pedido = PedidoAdocao(pet=pet.first(),
-                          usuario=request.user,
-                          data=datetime.now())
+    pedido = PedidoAdocao(pet=pet, usuario=request.user, data=datetime.now())
     pedido.save()
-    messages.add_message(request, constants.SUCCESS, 'Pedido de adoçao realizado com suesso')
+    
+    # Adicione as informações do usuário no contexto do email
+    context = {'pet': pet, 'pedido': pedido, 'usuario': request.user}
+    html_content = render_to_string('emails/solicitacao_adocao.html', context)
+    text_content = strip_tags(html_content)
+    
+    email = EmailMultiAlternatives(f'Solicitação de adoção para {pet.nome}', text_content, settings.EMAIL_HOST_USER, [pet.usuario.email])
+    email.attach_alternative(html_content, 'text/html')
+    email.send()
+    
+    messages.add_message(request, constants.SUCCESS, 'Pedido de adoção realizado com sucesso')
     return redirect('/adotar')
+
+
 
 def processa_pedido_adocao(request, id_pedido):
     status = request.GET.get('status')
@@ -55,17 +65,14 @@ def processa_pedido_adocao(request, id_pedido):
         
     pedido.save()
     pet.save()
-    html_content = render_to_string('emails/adocao_confirmada.html',{'string':string, 'pedido':pedido, 'pet':pet, 'status':status})
+    context = {'pet': pet, 'pedido': pedido, 'usuario': request.user, 'string':string, 'status':status}
+    html_content = render_to_string('emails/adocao_confirmada.html',context)
     text_content = strip_tags(html_content)
+    
     email = EmailMultiAlternatives('Seu pedido de adoçao foi Processado', text_content, settings.EMAIL_HOST_USER,[pedido.usuario.email,])
     email.attach_alternative(html_content, 'text/html')
     email.send()
-    # email = send_mail(
-    #     'Sua adoção foi processada',
-    #     string,#type:ignore
-    #     'vinicios471matheus@outlook.com',
-    #     [pedido.usuario.email,],
-    # )
+   
     messages.add_message(request, constants.SUCCESS, 'Pedido de adoção processado com sucesso')
     return redirect('/divulgar/ver_pedido_adocao')
   

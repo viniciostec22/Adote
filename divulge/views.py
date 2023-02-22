@@ -69,6 +69,7 @@ def ver_pet(request, id):
     if request.method == 'GET':
         pet = Pet.objects.get(id=id)
         return render(request, 'divulge/ver_pet.html', {'pet':pet})
+    
 @login_required   
 def ver_pedido_adocao(request):
     if request.method == 'GET':

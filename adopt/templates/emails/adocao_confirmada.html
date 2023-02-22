@@ -7,16 +7,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+  
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+   
     h1{
       color: blueviolet;
     }
     .main{
-      background-color:aqua;
+      font-family: 'Roboto', sans-serif;
+      background-color:#0FC9F2;
       padding: 20px;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #09090A;
+     
+      
     }
+   h1{
+    font-size: 28px;
+   }
     span{
       font-weight: bold;
-      color: blueviolet;
+      color: #F28B30;
     }
   </style>
 </head>
@@ -24,29 +37,37 @@
   <div class="main">
     {% if status == 'A' %}
     <h1>{{string}}</h1>
-    <h2> Seu novo Amiguinho <span>{{pedido.pet}}</span></h2>
-    <img src="{{pedido.pet.foto.url}}" alt="">
+    <h1>Confirmação de adoção para <span>{{pedido.pet}}</span></h1>
+    <p>Prezado {{pedido.usuario.first_name}},</p>
+    <p>É com grande prazer que confirmamos que a adoção do {{pedido.pet}} foi aceita! Parabéns por escolher fornecer um lar amoroso e responsável para o nosso querido animal.</p>
+    <p>Para completar o processo de adoção, pedimos que você siga os seguintes passos:</p>
+    <ol>
+      <li>Entre em contato conosco para agendar uma visita para finalizar a adoção.</li>
+      <li>Traga um documento de identificação válido e comprovante de residência.</li>
+      <li>Preencha e assine o contrato de adoção responsável.</li>
+    </ol>
+    <p>Se precisar de mais informações sobre o processo de adoção ou tiver quaisquer dúvidas, não hesite em entrar em contato conosco.</p>
+    <p>Mais uma vez, agradecemos por escolher adotar um animal e por fazer parte do nosso objetivo de encontrar um lar amoroso para esses animais incríveis.</p>
+    <br> 
+    <p> Estado: {{pet.estado}}</p>
+    <p>Cidade: {{pet.cidade}}</p>
+    <p>Telefone para contato: {{pet.telefone}}</p>
+    <p>Atenciosamente,<br>
+    <strong>Sistema Ado.te</strong></p>
 
-  <div class="row">
-    <img class="logo" src="{% static 'accounts/img/logo_adote.png' %}"width="20%" alt="">
-    <h3 class="font-vinho">Entre em contato com tutor para combinar a entrega</h3>
-    <div class="col-md">
-        <div class="row">
-            <div class="col-md">
-                <span class="span-bold">Estado</span>
-                <p>{{pet.estado}}</p>
-            </div>
+   
 
-            <div class="col-md">
-                <span class="span-bold">Cidade</span>
-                <p>{{pet.cidade}}</p>
-            </div>
-        </div>
-        <span class="span-bold">Telefone para contato</span>
-        <p>{{pet.telefone}}</p>
         {% elif status == 'R' %}
         <h1>{{string}}</h1>
-        <p>Não desanime temos varios outros amiguinhos aguardando para ser adotados</p>
+        <h1>Adoção recusada para <span>{{pedido.pet}}</span></h1>
+        <p>Prezado {{pedido.usuario.first_name}},</p>
+        <p>Agradecemos pelo seu interesse em adotar o [nome do animal], mas lamentavelmente não podemos prosseguir com a sua solicitação de adoção.</p>
+        <p>Gostaríamos de enfatizar que a decisão de recusar a adoção não foi tomada de ânimo leve. Como uma organização responsável, devemos garantir que todos os nossos animais sejam adotados por tutores adequados e capazes de fornecer um lar amoroso e seguro.</p>
+        <p>Por favor, não desanime. Existem muitos outros animais esperando por adoção em nosso abrigo e ficaremos felizes em ajudá-lo a encontrar o animal perfeito para você.</p>
+        <p>Obrigado novamente pelo seu interesse em nosso programa de adoção.</p>
+        <br>
+        <p>Atenciosamente,<br>
+          <strong>Sistema Ado.te</strong></p>
         {% endif %}
   </div>
   
